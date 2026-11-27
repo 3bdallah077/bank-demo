@@ -1,0 +1,31 @@
+# ============================================================================
+#  Render Blueprint  —  one click creates the whole deployment.
+#  Push this repo to GitHub, then open:
+#     https://render.com/deploy?repo=https://github.com/<you>/<repo>
+#  and Render reads this file: Docker build, env vars, health check.
+# ============================================================================
+services:
+  - type: web
+    name: bank-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free                 # upgrade to "starter" if you want a disk
+    healthCheckPath: /actuator/health
+    autoDeploy: true
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_PATH
+        value: /app/data/bank_system
+      - key: JAVA_OPTS
+        value: -XX:MaxRAMPercentage=75
+
+    # ------------------------------------------------------------------------
+    #  PERSISTENT DATA (optional, needs plan: starter or higher)
+    #  Uncomment to keep the H2 database across restarts and redeploys.
+    #  On the free plan the disk is ephemeral, so data resets on every deploy.
+    # ------------------------------------------------------------------------
+    # disk:
+    #   name: bankdata
+    #   mountPath: /app/data
+    #   sizeGB: 1
