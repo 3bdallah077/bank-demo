@@ -1,0 +1,26 @@
+PASS UI: invalid login shows error
+PASS UI: customer dashboard shows 5,000.00 balance
+PASS UI: deposit success message
+PASS UI: balance updated to 5,250.75
+PASS UI->API: deposit of 0 rejected
+PASS UI->API: overdraft rejected
+PASS UI: withdraw 50 ok
+PASS UI->API: invalid recipient rejected
+PASS UI: transfer 1200 success
+PASS UI: XSS text rendered as text, no <script> element injected
+PASS UI: history newest first (top row is the transfer)
+PASS UI: date filter returns only the 2026-11-18 sample rows (4)
+PASS UI: session survives page reload
+PASS UI: teller search shows account
+PASS UI: teller deposit on behalf
+PASS UI: fraud flags list has unreviewed flags (>=2: seed + new 1200 transfer)
+PASS UI: manager reviewed a flag
+PASS UI: admin created user
+PASS UI: admin disabled user
+PASS UI: 3rd failed attempt shows locked message
+PASS UI: admin sees auditor1 LOCKED
+PASS UI: auditor sees audit log rows (7)
+PASS UI: auditor has no deposit/transfer tabs
+PASS UI: expired/removed session returns to login with message
+
+24/24 UI checks passed

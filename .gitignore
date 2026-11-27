@@ -1,0 +1,23 @@
+# build output
+target/
+*.class
+
+# runtime data — never commit a database file
+data/
+*.mv.db
+*.trace.db
+*.log
+
+# tooling
+node_modules/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+vercel-demo/node_modules/
+
+# local secrets
+.env
+
+# prebuilt launcher jar — build it with `mvn package`, do not commit 43 MB
+windows/bank-demo.jar

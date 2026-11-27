@@ -1,0 +1,12 @@
+{
+  "name": "bank-demo-online-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Online demo of the Classroom Bank Demo for Vercel: the real frontend running against an in-browser mock of the same REST API, with the same seeded data as the sample schema. Fictional data only.",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

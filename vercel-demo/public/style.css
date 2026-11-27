@@ -1,0 +1,61 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f2f5f9; color: #1c2733; }
+header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 12px 24px; background: #12355b; color: #fff; }
+header h1 { font-size: 20px; margin: 0; }
+.banner { font-size: 12px; background: #ffd166; color: #333; padding: 3px 8px; border-radius: 10px; }
+#userbox { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+main { max-width: 1000px; margin: 20px auto; padding: 0 16px; }
+.card { background: #fff; border-radius: 8px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.12); margin-bottom: 16px; }
+h2 { margin-top: 0; font-size: 18px; }
+label { display: block; margin: 10px 0; font-size: 14px; }
+input, select, textarea { display: block; width: 100%; max-width: 360px; padding: 8px; margin-top: 4px; border: 1px solid #b7c2cf; border-radius: 4px; font-size: 14px; }
+input[type=checkbox] { display: inline; width: auto; }
+button { padding: 8px 14px; border: 0; border-radius: 4px; background: #1f6feb; color: #fff; cursor: pointer; font-size: 14px; }
+button.secondary { background: #6b7a8c; }
+button.danger { background: #c0392b; }
+button.small { padding: 4px 8px; font-size: 12px; }
+button:hover { filter: brightness(1.1); }
+#msg { max-width: 1000px; margin: 12px auto 0; padding: 0 16px; min-height: 0; }
+#msg .ok, #msg .err { padding: 10px 14px; border-radius: 6px; font-size: 14px; }
+#msg .ok { background: #d9f2e1; color: #145a2c; border: 1px solid #9fd5b0; }
+#msg .err { background: #fde0dd; color: #8a1c10; border: 1px solid #f0aaa3; }
+nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+nav button { background: #dce4ee; color: #1c2733; }
+nav button.active { background: #12355b; color: #fff; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e3e8ee; }
+th { background: #eef2f7; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.accounts { display: flex; gap: 14px; flex-wrap: wrap; }
+.acct { background: #fff; border-radius: 8px; padding: 14px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.12); min-width: 280px; }
+.acct .no { font-family: monospace; font-size: 13px; color: #55657a; }
+.acct .bal { font-size: 26px; font-weight: 600; margin-top: 6px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+.hidden { display: none !important; }
+.hint { font-size: 12px; color: #667; }
+.tag { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 8px; background: #e3e8ee; }
+.tag.COMPLETED { background: #d9f2e1; } .tag.FAILED { background: #fde0dd; } .tag.flag { background: #ffe3b0; }
+
+/* ---------- Responsive: phones and small tablets ---------- */
+@media (max-width: 760px) {
+  header { padding: 10px 14px; gap: 8px; }
+  header h1 { font-size: 17px; }
+  .banner { font-size: 11px; }
+  #userbox { width: 100%; margin-left: 0; justify-content: space-between; }
+  main { margin: 14px auto; padding: 0 10px; }
+  #msg { padding: 0 10px; }
+  .card { padding: 14px; border-radius: 10px; }
+  h2 { font-size: 16px; }
+  input, select, textarea { max-width: 100%; font-size: 16px; } /* 16px stops iOS zoom-on-focus */
+  button { padding: 10px 14px; }
+  nav { gap: 6px; }
+  nav button { flex: 1 1 auto; min-width: calc(50% - 6px); }
+  .acct { min-width: 100%; }
+  .acct .bal { font-size: 22px; }
+  .row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .row > * { width: 100%; }
+  /* let wide tables scroll sideways instead of breaking the layout */
+  #panel { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { font-size: 12px; min-width: 520px; }
+  th, td { padding: 6px 6px; white-space: nowrap; }
+}

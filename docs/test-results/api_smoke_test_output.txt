@@ -1,0 +1,68 @@
+PASS FR-01 valid login
+PASS FR-01 invalid login rejected (401, generic msg)
+PASS Unauthenticated API call rejected
+PASS FR-03 balances listed
+PASS FR-04 deposit ok
+PASS FR-04 deposit rejects amount 0
+PASS FR-04 deposit rejects amount -5
+PASS FR-04 deposit rejects amount 'abc'
+PASS FR-04 deposit rejects amount None
+PASS FR-04 deposit rejects amount '1.234'
+PASS FR-04 balance unchanged after rejected deposits
+PASS FR-05 withdraw ok
+PASS FR-05 overdraft rejected
+PASS FR-05 withdraw exact balance allowed -> 0
+PASS FR-06 transfer updates both accounts
+PASS FR-07 transfer rows linked by reference_id
+PASS FR-06 invalid recipient rejected
+PASS FR-06 same-account transfer rejected
+PASS FR-06 insufficient funds transfer rejected
+PASS Customer cannot transfer from someone else's account (403)
+PASS Balances unchanged after rejected transfers
+PASS FR-08 history newest first
+PASS FR-08 date filter (only 2026-11-18 rows)
+PASS FR-08 reversed dates rejected
+PASS FR-08 malformed date -> 400
+PASS Customer cannot read other customer's history (403)
+PASS FR-09 customer blocked from admin API
+PASS FR-09 customer blocked from audit log
+PASS FR-09 teller blocked from reports
+PASS FR-09 manager cannot deposit
+PASS FR-10 teller finds account
+PASS FR-10 unknown account -> 404
+PASS FR-10 customer cannot use search
+PASS US-08 teller deposit for customer
+PASS US-08 teller withdraw for customer
+PASS FR-11 daily report live
+PASS FR-11 report saved
+PASS FR-12 deposit >= limit flagged
+PASS FR-12 amount below limit not flagged
+PASS FR-12 manager reviews flag
+PASS US-11 auditor reads audit log
+PASS NFR-10 no DELETE /api/audit-log/1 (4xx)
+PASS NFR-10 no PUT /api/audit-log/1 (4xx)
+PASS NFR-10 no DELETE /api/transactions/1 (4xx)
+PASS NFR-10 no PUT /api/transactions/1 (4xx)
+PASS NFR-10 no PATCH /api/transactions/1 (4xx)
+PASS US-10 admin creates user (hash not returned)
+PASS US-10 duplicate username -> 409
+PASS US-10 weak password rejected
+PASS New user can log in
+PASS US-10 assign role
+PASS US-10 disable user: existing session dead immediately
+PASS US-10 disabled user cannot log in
+PASS Admin cannot disable self
+PASS FR-02 attempts 1-2 -> 401, attempt 3 -> 423 locked
+PASS FR-02 correct password rejected while locked
+PASS FR-02 admin unlock restores login
+PASS FR-02 counter resets after a successful login (2 bad + good + bad != lock)
+PASS NFR-03 SQL injection in username -> 401
+PASS NFR-03 SQLi in account number -> 4xx
+PASS NFR-03 script text stored as inert data and returned as JSON string
+PASS NFR-05 50 concurrent opposite transfers: all succeed, no deadlock
+PASS NFR-05 money conserved (sum of both accounts unchanged)
+PASS NFR-01 50 concurrent transfers all under 2 s (max 0.63s, login excluded)
+PASS NFR-02 no password hash in user list
+PASS Logout kills session
+
+66/66 checks passed

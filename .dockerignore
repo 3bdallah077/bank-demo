@@ -1,0 +1,6 @@
+target/
+node_modules/
+.git/
+data/
+*.log
+vercel-demo/

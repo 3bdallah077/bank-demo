@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classroom Bank Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Classroom Bank Demo</h1>
+    <span class="banner">Teaching demo. Fictional data only, no real money.</span>
+    <div id="userbox" class="hidden">
+      <span id="who" data-testid="who"></span>
+      <button id="logoutBtn" type="button">Log out</button>
+    </div>
+  </header>
+
+  <div id="msg" role="status" aria-live="polite"></div>
+
+  <main>
+    <section id="loginView" class="card">
+      <h2>Log in</h2>
+      <form id="loginForm" autocomplete="off">
+        <label>Username <input id="username" name="username" type="text" maxlength="100" required></label>
+        <label>Password <input id="password" name="password" type="password" maxlength="200" required></label>
+        <button id="loginBtn" type="submit">Log in</button>
+      </form>
+      <p class="hint">Sample users: customer1, teller1, manager1, admin1, auditor1. The classroom password is in the README.</p>
+    </section>
+
+    <section id="appView" class="hidden">
+      <nav id="tabs"></nav>
+      <div id="panel"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
