@@ -59,3 +59,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   table { font-size: 12px; min-width: 520px; }
   th, td { padding: 6px 6px; white-space: nowrap; }
 }
+
+/* two-column login / sign-up layout (FR-01 + self sign-up) */
+.authgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.authgrid .card{margin-bottom:0}
+@media (max-width:760px){.authgrid{grid-template-columns:1fr}}

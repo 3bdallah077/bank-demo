@@ -19,14 +19,28 @@
   <div id="msg" role="status" aria-live="polite"></div>
 
   <main>
-    <section id="loginView" class="card">
-      <h2>Log in</h2>
-      <form id="loginForm" autocomplete="off">
-        <label>Username <input id="username" name="username" type="text" maxlength="100" required></label>
-        <label>Password <input id="password" name="password" type="password" maxlength="200" required></label>
-        <button id="loginBtn" type="submit">Log in</button>
-      </form>
-      <p class="hint">Sample users: customer1, teller1, manager1, admin1, auditor1. The classroom password is in the README.</p>
+    <section id="loginView" class="authgrid">
+      <div class="card">
+        <h2>Log in</h2>
+        <form id="loginForm" autocomplete="off">
+          <label>Username <input id="username" name="username" type="text" maxlength="100" required></label>
+          <label>Password <input id="password" name="password" type="password" maxlength="200" required></label>
+          <button id="loginBtn" type="submit">Log in</button>
+        </form>
+        <p class="hint">Sample users: customer1, teller1, manager1, admin1, auditor1. The classroom password is in the README.</p>
+      </div>
+
+      <div class="card">
+        <h2>Create an account</h2>
+        <form id="registerForm" autocomplete="off">
+          <label>Username <input id="r_username" name="r_username" type="text" maxlength="50" required></label>
+          <label>Password (min 8) <input id="r_password" name="r_password" type="password" maxlength="72" required></label>
+          <label>Full name <input id="r_full" name="r_full" type="text" maxlength="200" required></label>
+          <label>Email (optional) <input id="r_email" name="r_email" type="email" maxlength="255"></label>
+          <button id="registerBtn" type="submit">Create account</button>
+        </form>
+        <p class="hint">Self sign-up always creates a CUSTOMER with one account at 0.00 EGP. Staff roles are assigned by the administrator.</p>
+      </div>
     </section>
 
     <section id="appView" class="hidden">
