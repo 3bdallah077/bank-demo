@@ -79,6 +79,26 @@ $('loginForm').addEventListener('submit', async (e) => {
   } catch (err) { show('err', err.message); }
 });
 
+$('registerForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearMsg();
+  const btn = $('registerBtn');
+  btn.disabled = true;
+  try {
+    state.user = await api('POST', '/api/auth/register', {
+      username: $('r_username').value.trim(),
+      password: $('r_password').value,
+      fullName: $('r_full').value.trim(),
+      email: $('r_email').value.trim(),
+    });
+    $('registerForm').reset();
+    enterApp();
+    show('ok', 'Account created. You are logged in as ' + state.user.username + '.');
+  } catch (err) {
+    show('err', err.message);
+  } finally { btn.disabled = false; }
+});
+
 $('logoutBtn').addEventListener('click', async () => {
   try { await api('POST', '/api/auth/logout'); } catch (e) { /* ignore */ }
   state.user = null; showLogin(); show('ok', 'Logged out.');

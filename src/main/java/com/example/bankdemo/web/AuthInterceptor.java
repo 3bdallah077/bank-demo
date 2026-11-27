@@ -23,7 +23,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod)) return true;
-        if (req.getRequestURI().equals("/api/auth/login")) return true;
+        String path = req.getRequestURI();
+        if (path.equals("/api/auth/login") || path.equals("/api/auth/register")) return true; // public endpoints
         HttpSession s = req.getSession(false);
         Long uid = s == null ? null : (Long) s.getAttribute(SESSION_UID);
         User u = uid == null ? null : users.findById(uid).orElse(null);

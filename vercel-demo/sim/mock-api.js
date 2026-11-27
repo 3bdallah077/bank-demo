@@ -216,6 +216,31 @@
       return respond(200, userView(u));
     }
 
+    if (method === 'POST' && path === '/api/auth/register') {
+      var regName = body && typeof body.username === 'string' ? body.username.trim() : '';
+      var regPass = body && typeof body.password === 'string' ? body.password : '';
+      var regFull = body && typeof body.fullName === 'string' ? body.fullName.trim() : '';
+      var regEmail = body && typeof body.email === 'string' ? body.email : '';
+      if (!/^[A-Za-z0-9_.-]{3,50}$/.test(regName)) return err(400, 'Username must be 3-50 characters: letters, digits, _ . -');
+      if (regPass.length < 8 || regPass.length > 72) return err(400, 'Password must be 8-72 characters');
+      if (!regFull || regFull.length > 200) return err(400, 'Full name is required (max 200 characters)');
+      if (regEmail && (regEmail.length > 255 || !/^[^@\s<>"]+@[^@\s<>"]+\.[^@\s<>"]+$/.test(regEmail))) return err(400, 'Invalid email');
+      if (db.users.some(function (x) { return x.username === regName; })) return err(409, 'Username already exists');
+      var regNumber;
+      do {
+        regNumber = 'EGP-' + String(Math.floor(Math.random() * 1000)).padStart(3, '0') + '-' +
+                    String(Math.floor(Math.random() * 1e10)).padStart(10, '0');
+      } while (byNumber(regNumber));
+      var newUser = { id: ++db.seq.user, username: regName, password: regPass, fullName: regFull,
+        email: regEmail || null, role: 'CUSTOMER', active: true, locked: false, failedLoginAttempts: 0, lockUntil: null };
+      var newAccount = { id: ++db.seq.account, accountNumber: regNumber, userId: newUser.id,
+        balance: 0.00, currency: 'EGP', active: true };
+      db.users.push(newUser); db.accounts.push(newAccount);
+      db.session = { userId: newUser.id, lastSeen: Date.now() };
+      save();
+      return respond(200, userView(newUser));
+    }
+
     if (method === 'POST' && path === '/api/auth/logout') {
       db.session = { userId: null, lastSeen: 0 }; save();
       return respond(200, { message: 'Logged out' });

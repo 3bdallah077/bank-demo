@@ -51,6 +51,13 @@ public class AdminService {
         return view(users.save(u));
     }
 
+    /** Self sign-up creates the customer and their empty account in one transaction. */
+    @Transactional
+    public void registerCustomer(String username, String password, String fullName, String email) {
+        Long userId = (Long) create(username, password, fullName, email, Role.CUSTOMER).get("id");
+        openFor(userId);
+    }
+
     @Transactional
     public Map<String, Object> update(Long id, User admin, Role role, Boolean active, Boolean unlock) {
         User u = users.findById(id).orElseThrow(() -> ApiException.notFound("User not found"));
@@ -64,6 +71,12 @@ public class AdminService {
 
     @Transactional
     public Map<String, Object> openAccount(Long userId) {
+        return openFor(userId);
+    }
+
+    /** Creates the account row. Shared by the admin screen and by public self sign-up. */
+    @Transactional
+    public Map<String, Object> openFor(Long userId) {
         User u = users.findById(userId).orElseThrow(() -> ApiException.notFound("User not found"));
         if (u.role != Role.CUSTOMER) throw ApiException.bad("Accounts can only be opened for CUSTOMER users");
         String number;
